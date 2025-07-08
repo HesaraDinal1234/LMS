@@ -17,27 +17,32 @@
                     <span>EduLearn</span>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Services</a></li>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Explore Courses</a></li>
+                    <li><a href="#courses">Explore Courses</a></li>
                 </ul>
                 <div class="auth-buttons">
                     <a href="login.php" class="btn btn-login">Login</a>
                     <a href="register.php" class="btn btn-register">Register</a>
+                </div>
+                <!-- Mobile Nav Toggle Button (Hamburger) -->
+                <div class="mobile-nav-toggle">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Advance Your Skills With Online Learning</h1>
                     <p>Join thousands of learners worldwide and gain access to high-quality courses from industry experts. Learn at your own pace, anytime, anywhere.</p>
-                    <a href="#" class="btn-primary">Start Learning Today</a>
+                    <a href="#courses" class="btn-primary">Start Learning Today</a>
                 </div>
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Students learning online">
@@ -47,7 +52,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section id="features" class="features">
         <div class="container">
             <div class="section-title">
                 <h2>Why Choose Our Platform</h2>
@@ -80,7 +85,7 @@
     </section>
 
     <!-- Courses Section -->
-    <section class="courses">
+    <section id="courses" class="courses">
         <div class="container">
             <div class="section-title">
                 <h2>Popular Courses</h2>
@@ -147,10 +152,10 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Services</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Services</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Courses</a></li>
+                        <li><a href="#courses">Courses</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
@@ -171,9 +176,64 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 EduLearn. All rights reserved.</p>
+                <p>© 2025 EduLearn. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            // Mobile Navigation Toggle
+            mobileNavToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileNavToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Add hover effect to course cards using class toggle
+            const courseCards = document.querySelectorAll('.course-card');
+            courseCards.forEach(card => {
+                card.addEventListener('mouseenter', () => card.classList.add('hover-effect'));
+                card.addEventListener('mouseleave', () => card.classList.remove('hover-effect'));
+            });
+
+            // Add animation to feature cards on scroll using Intersection Observer
+            const featureCards = document.querySelectorAll('.feature-card');
+            const observerOptions = {
+                root: null, // viewport
+                threshold: 0.1, // trigger when 10% of the element is visible
+                rootMargin: '0px'
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, observerOptions);
+
+            featureCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Update footer year to be current
+            document.querySelector('.footer-bottom p').textContent = 
+                `© ${new Date().getFullYear()} EduLearn. All rights reserved.`;
+        });
+    </script>
 </body>
 </html>
