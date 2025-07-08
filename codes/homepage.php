@@ -23,8 +23,8 @@
                     <li><a href="#">Explore Courses</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <a href="#" class="btn btn-login">Login</a>
-                    <a href="#" class="btn btn-register">Register</a>
+                    <a href="login.php" class="btn btn-login">Login</a>
+                    <a href="register.php" class="btn btn-register">Register</a>
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 EduLearn. All rights reserved.</p>
+                <p>&copy; 2025 EduLearn. All rights reserved.</p>
             </div>
         </div>
     </footer>
