@@ -1,0 +1,58 @@
+/* ============================================= */
+/*  Styles for the All Courses Page (Dashboard)  */
+/* ============================================= */
+
+/* Main content area padding */
+main .courses {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Styling for the filter button container */
+.course-filters {
+    margin: 30px 0;
+    text-align: center;
+}
+
+/* Individual filter button styles */
+.filter-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Hover effect for filter buttons */
+.filter-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+/* Style for the currently active filter button */
+.filter-btn.active {
+    background-color: #007bff; /* Primary color from your theme */
+    color: white;
+    border-color: #007bff;
+}
+
+/* The grid layout for all the course cards */
+.courses-grid {
+    display: grid;
+    /* Creates responsive columns: they will be at least 300px wide, 
+       and more columns will be added as the screen gets wider. */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* For smaller screens, make the minimum course card width smaller */
+@media (max-width: 768px) {
+    .courses-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
