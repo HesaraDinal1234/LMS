@@ -3,40 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Courses - EduLearn</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Shared homepage styles -->
-    <link rel="stylesheet" href="CSS/homepage.css">
-    
-    <!-- ADDED: Link to the new stylesheet for this page -->
+    <title>Course Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="CSS/dashboard.css">
-    
-    <!-- REMOVED: The entire inline <style> block has been moved to courses.css -->
 </head>
 <body>
-    <!-- Navigation (Same as homepage) -->
+    <!-- Navigation (same as before) -->
     <nav>
         <div class="container">
             <div class="navbar">
-                <div class="logo">
-                    <a href="index.html" style="text-decoration: none; color: inherit;">
-                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span>EduLearn</span>
-                    </a>
-                </div>
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>EduDash
+                </a>
+                
                 <ul class="nav-links">
-                    <li><a href="index.html#home">Home</a></li>
-                    <li><a href="index.html#features">Services</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <!-- MODIFIED: Added 'active' class to show this is the current page -->
-                    <li><a href="#courses" class="active">Explore Courses</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#" class="active">Courses</a></li>
+                    <li><a href="#">Progress</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
+                
                 <div class="auth-buttons">
-                    <a href="login.php" class="btn btn-login">Login</a>
-                    <a href="register.php" class="btn btn-register">Register</a>
+                    <a href="#" class="btn btn-login">Log In</a>
+                    <a href="#" class="btn btn-register">Sign Up</a>
                 </div>
-                <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+                
+                <button class="mobile-nav-toggle">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-times"></i>
                 </button>
@@ -44,179 +37,290 @@
         </div>
     </nav>
 
-    <!-- Main Courses Section -->
-    <main>
-        <!-- REMOVED: Inline style="padding-top: 50px;" is now in courses.css -->
-        <section id="courses" class="courses">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Explore All Our Courses</h2>
-                    <p>Find the perfect course to boost your skills and advance your career.</p>
+    <!-- Dashboard Main Content -->
+    <section class="courses">
+        <div class="container">
+            <div class="dashboard-header">
+                <div>
+                    <h2>My Courses Dashboard</h2>
+                    <p>Browse and manage all your courses in one place</p>
                 </div>
-                <!-- Course Filter Buttons will be inserted here by JavaScript -->
-                <div class="courses-grid">
-                    <!-- FIX: HTML is now properly formatted for readability -->
-                    <div class="course-card" data-category="development">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Web Development"></div>
-                        <div class="course-content">
-                            <span class="course-category">Development</span>
-                            <h3>Complete Web Development Bootcamp</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 60 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.8 (1.2k)</span>
-                            </div>
+                <div class="search-filter">
+                    <input type="text" id="searchInput" placeholder="Search courses..." onkeyup="filterCourses()">
+                    <select id="categoryFilter" onchange="filterCourses()">
+                        <option value="all">All Categories</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Mobile Development">Mobile Development</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Cybersecurity">Cybersecurity</option>
+                        <option value="AI & Machine Learning">AI & Machine Learning</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="courses-grid" id="coursesContainer">
+                <!-- Course Card 1 - Web Development -->
+                <div class="course-card" data-category="Web Development" data-search="javascript mastery">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="JavaScript Course">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Web Development</span>
+                        <h3>Complete JavaScript Mastery</h3>
+                        <p>Master modern JavaScript from scratch with this comprehensive course covering ES6+, Node.js, and frameworks.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 12 Modules</span>
+                            <span><i class="fas fa-clock"></i> 32 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="datascience">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" alt="Data Science"></div>
-                        <div class="course-content">
-                            <span class="course-category">Data Science</span>
-                            <h3>Data Science & Machine Learning</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 80 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.9 (980)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 2 - Data Science -->
+                <div class="course-card" data-category="Data Science" data-search="python data analysis">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Data Science">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Data Science</span>
+                        <h3>Python for Data Analysis</h3>
+                        <p>Learn how to use Python, Pandas, and NumPy for effective data analysis and visualization.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 40%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 8 Modules</span>
+                            <span><i class="fas fa-clock"></i> 24 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="marketing">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b" alt="Digital Marketing"></div>
-                        <div class="course-content">
-                            <span class="course-category">Marketing</span>
-                            <h3>Digital Marketing Masterclass</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 45 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.7 (850)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 3 - Design -->
+                <div class="course-card" data-category="Design" data-search="ui ux design">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="UI/UX Design">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Design</span>
+                        <h3>UI/UX Design Fundamentals</h3>
+                        <p>Learn the principles of user interface and experience design with practical projects.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 15%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 6 Modules</span>
+                            <span><i class="fas fa-clock"></i> 18 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="development">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6" alt="Mobile Development"></div>
-                        <div class="course-content">
-                            <span class="course-category">Development</span>
-                            <h3>Mobile App Development</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 50 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.6 (720)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 4 - Web Development -->
+                <div class="course-card" data-category="Web Development" data-search="react js">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="React JS">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Web Development</span>
+                        <h3>React.js Complete Guide</h3>
+                        <p>Build modern web applications with React, Redux, and React Router.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 10 Modules</span>
+                            <span><i class="fas fa-clock"></i> 28 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="business">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f" alt="Business Analytics"></div>
-                        <div class="course-content">
-                            <span class="course-category">Business</span>
-                            <h3>Business Analytics Fundamentals</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 35 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.5 (610)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 5 - Business -->
+                <div class="course-card" data-category="Business" data-search="digital marketing">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Digital Marketing">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Business</span>
+                        <h3>Digital Marketing Strategy</h3>
+                        <p>Learn how to create and implement effective digital marketing campaigns.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 90%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 7 Modules</span>
+                            <span><i class="fas fa-clock"></i> 20 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="design">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978" alt="UI/UX Design"></div>
-                        <div class="course-content">
-                            <span class="course-category">Design</span>
-                            <h3>UI/UX Design Principles</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 40 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.7 (890)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 6 - Web Development -->
+                <div class="course-card" data-category="Web Development" data-search="node js backend">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Node JS">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Web Development</span>
+                        <h3>Node.js Backend Development</h3>
+                        <p>Build scalable server-side applications with Node.js, Express, and MongoDB.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 60%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 9 Modules</span>
+                            <span><i class="fas fa-clock"></i> 26 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="programming">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45" alt="Python Programming"></div>
-                        <div class="course-content">
-                            <span class="course-category">Programming</span>
-                            <h3>Python for Beginners</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 30 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.8 (1.1k)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 7 - Mobile Development -->
+                <div class="course-card" data-category="Mobile Development" data-search="flutter app development">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Flutter">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Mobile Development</span>
+                        <h3>Flutter App Development</h3>
+                        <p>Build beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 30%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 11 Modules</span>
+                            <span><i class="fas fa-clock"></i> 35 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="technology">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3" alt="Cloud Computing"></div>
-                        <div class="course-content">
-                            <span class="course-category">Technology</span>
-                            <h3>Cloud Computing with AWS</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 55 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.9 (950)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 8 - Cloud Computing -->
+                <div class="course-card" data-category="Cloud Computing" data-search="aws certified solutions architect">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="AWS Cloud">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Cloud Computing</span>
+                        <h3>AWS Certified Solutions Architect</h3>
+                        <p>Learn how to design distributed systems on AWS platform and prepare for the certification exam.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 10%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 14 Modules</span>
+                            <span><i class="fas fa-clock"></i> 40 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="business">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1542744095-291d1f67b221" alt="Project Management"></div>
-                        <div class="course-content">
-                            <span class="course-category">Business</span>
-                            <h3>Agile Project Management</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 25 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.7 (550)</span>
-                            </div>
+                </div>
+
+                <!-- Course Card 9 - Cybersecurity -->
+                <div class="course-card" data-category="Cybersecurity" data-search="ethical hacking">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Ethical Hacking">
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Cybersecurity</span>
+                        <h3>Ethical Hacking Fundamentals</h3>
+                        <p>Learn penetration testing and ethical hacking techniques to secure systems and networks.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 5%"></div>
+                        </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 9 Modules</span>
+                            <span><i class="fas fa-clock"></i> 30 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
-                    <div class="course-card" data-category="design">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1522542550221-35fd19575a2d" alt="Graphic Design"></div>
-                        <div class="course-content">
-                            <span class="course-category">Design</span>
-                            <h3>Graphic Design for Beginners</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 30 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.6 (680)</span>
-                            </div>
-                        </div>
+                </div>
+
+                <!-- Course Card 10 - AI & Machine Learning -->
+                <div class="course-card" data-category="AI & Machine Learning" data-search="machine learning python">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Machine Learning">
                     </div>
-                     <div class="course-card" data-category="programming">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479" alt="JavaScript"></div>
-                        <div class="course-content">
-                            <span class="course-category">Programming</span>
-                            <h3>Advanced JavaScript Concepts</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 40 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.9 (1.5k)</span>
-                            </div>
+                    <div class="course-content">
+                        <span class="course-category">AI & Machine Learning</span>
+                        <h3>Machine Learning with Python</h3>
+                        <p>Build machine learning models using Python, TensorFlow, and scikit-learn for real-world applications.</p>
+                        <div class="progress-indicator">
+                            <div class="progress-bar" style="width: 25%"></div>
                         </div>
-                    </div>
-                     <div class="course-card" data-category="marketing">
-                        <div class="course-image"><img src="https://images.unsplash.com/photo-1557862921-37829c790f19" alt="SEO"></div>
-                        <div class="course-content">
-                            <span class="course-category">Marketing</span>
-                            <h3>SEO Fundamentals & Strategy</h3>
-                            <div class="course-meta">
-                                <span><i class="far fa-clock" aria-hidden="true"></i> 20 hours</span>
-                                <span><i class="fas fa-user-graduate" aria-hidden="true"></i> 4.8 (710)</span>
-                            </div>
+                        <div class="course-meta">
+                            <span><i class="fas fa-book-open"></i> 10 Modules</span>
+                            <span><i class="fas fa-clock"></i> 36 Hours</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer (Same as homepage) -->
+    <!-- Footer (same as before) -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>About EduLearn</h3>
-                    <p>EduLearn is a leading online learning platform committed to providing high-quality education to learners worldwide.</p>
+                    <h3>About EduDash</h3>
+                    <p>EduDash is a modern learning platform that helps you acquire new skills and advance your career.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#features">Services</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Support</h3>
                     <ul class="footer-links">
@@ -226,64 +330,65 @@
                         <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 123 Education St, Learning City</p>
-                    <p><i class="fas fa-phone" aria-hidden="true"></i> +1 (123) 456-7890</p>
-                    <p><i class="fas fa-envelope" aria-hidden="true"></i> info@edulearn.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@edudash.com</p>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>© 2025 EduLearn. All rights reserved.</p>
+                <p>&copy; 2023 EduDash. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // No changes needed to the script. It is already correct.
+        // Mobile navigation toggle
+        document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Animate course cards on scroll
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            mobileNavToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                this.classList.toggle('active');
-            });
-
-            document.querySelector('.footer-bottom p').textContent = 
-                `© ${new Date().getFullYear()} EduLearn. All rights reserved.`;
-
-            const courseSectionTitle = document.querySelector('#courses .section-title');
-            const coursesGrid = document.querySelector('.courses-grid');
-            const allCourses = Array.from(coursesGrid.querySelectorAll('.course-card'));
+            const courseCards = document.querySelectorAll('.course-card');
             
-            const categories = new Set(allCourses.map(course => course.dataset.category.toLowerCase()));
-
-            const filterButtonsContainer = document.createElement('div');
-            filterButtonsContainer.className = 'course-filters';
-
-            let buttonsHTML = '<button class="filter-btn active" data-category="all">All</button>';
-            categories.forEach(category => {
-                const displayName = category.charAt(0).toUpperCase() + category.slice(1);
-                buttonsHTML += `<button class="filter-btn" data-category="${category}">${displayName}</button>`;
-            });
-            filterButtonsContainer.innerHTML = buttonsHTML;
-            courseSectionTitle.insertAdjacentElement('afterend', filterButtonsContainer);
-
-            filterButtonsContainer.addEventListener('click', (e) => {
-                if (!e.target.matches('.filter-btn')) return;
-                filterButtonsContainer.querySelector('.active').classList.remove('active');
-                e.target.classList.add('active');
-                const selectedCategory = e.target.dataset.category;
-                allCourses.forEach(course => {
-                    const courseCategory = course.dataset.category.toLowerCase();
-                    if (selectedCategory === 'all' || courseCategory === selectedCategory) {
-                        course.style.display = 'block';
-                    } else {
-                        course.style.display = 'none';
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('hover-effect');
                     }
                 });
+            }, { threshold: 0.1 });
+            
+            courseCards.forEach(card => {
+                observer.observe(card);
             });
         });
+
+        // Filter courses function
+        function filterCourses() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const courses = document.querySelectorAll('.course-card');
+            
+            courses.forEach(course => {
+                const courseText = course.getAttribute('data-search').toLowerCase();
+                const courseCategory = course.getAttribute('data-category');
+                
+                const matchesSearch = courseText.includes(searchInput);
+                const matchesCategory = categoryFilter === 'all' || courseCategory === categoryFilter;
+                
+                if (matchesSearch && matchesCategory) {
+                    course.style.display = 'block';
+                } else {
+                    course.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
