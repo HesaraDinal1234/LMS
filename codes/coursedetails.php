@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Course Card Styles */
+        .course-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px auto;
+            max-width: 800px;
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-image {
+            flex: 1;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .course-content {
+            flex: 2;
+            padding: 25px;
+        }
+        
+        .course-category {
+            display: inline-block;
+            background: #4e54c8;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .course-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .course-content p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .progress-indicator {
+            background: #ecf0f1;
+            border-radius: 5px;
+            height: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background: #4e54c8;
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .course-meta {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .course-meta span {
+            margin-right: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .course-meta i {
+            margin-right: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-enroll {
+            background: #4e54c8;
+            color: white;
+            margin-right: 10px;
+        }
+        
+        .btn-enroll:hover {
+            background: #3a41b5;
+        }
+        
+        .btn-view {
+            background: transparent;
+            color: #4e54c8;
+            border: 1px solid #4e54c8;
+        }
+        
+        .btn-view:hover {
+            background: #4e54c8;
+            color: white;
+        }
+        
+        /* Course Details Page Styles (hidden by default) */
+        .course-details {
+            display: none;
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .course-details.active {
+            display: block;
+        }
+        
+        .course-header {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .course-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .course-header-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+        
+        .course-header-content h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .course-header-content p {
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .course-body {
+            padding: 30px;
+            display: flex;
+        }
+        
+        .course-main {
+            flex: 2;
+            padding-right: 30px;
+        }
+        
+        .course-sidebar {
+            flex: 1;
+        }
+        
+        .course-section {
+            margin-bottom: 30px;
+        }
+        
+        .course-section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .course-section h3 {
+            font-size: 18px;
+            margin: 15px 0 10px;
+            color: #4e54c8;
+        }
+        
+        .course-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .course-section p {
+            margin-bottom: 15px;
+        }
+        
+        .price-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            color: #4e54c8;
+            margin: 10px 0;
+        }
+        
+        .price span {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: normal;
+            text-decoration: line-through;
+            display: block;
+        }
+        
+        .btn-buy {
+            background: #4e54c8;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-buy:hover {
+            background: #3a41b5;
+        }
+        
+        .instructor {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .instructor img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .instructor-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .instructor-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .course-features {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .course-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .course-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-label {
+            color: #7f8c8d;
+        }
+        
+        .feature-value {
+            font-weight: 500;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #4e54c8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-btn i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Course Card -->
+        <div class="course-card" data-category="AI & Machine Learning" data-search="machine learning python">
+            <div class="course-image">
+                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Machine Learning">
+            </div>
+            <div class="course-content">
+                <span class="course-category">AI & Machine Learning</span>
+                <h3>Machine Learning with Python</h3>
+                <p>Build machine learning models using Python, TensorFlow, and scikit-learn for real-world applications.</p>
+                <div class="progress-indicator">
+                    <div class="progress-bar" style="width: 25%"></div>
+                </div>
+                <div class="course-meta">
+                    <span><i class="fas fa-book-open"></i> 10 Modules</span>
+                    <span><i class="fas fa-clock"></i> 36 Hours</span>
+                </div>
+                <div class="course-actions">
+                    <a href="#" class="btn btn-enroll" id="continue-btn">Continue</a>
+                    <a href="#" class="btn btn-view">Details</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Course Details Page -->
+        <div class="course-details" id="course-details">
+            <a href="#" class="back-btn" id="back-btn"><i class="fas fa-arrow-left"></i> Back to Courses</a>
+            
+            <div class="course-header">
+                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Machine Learning">
+                <div class="course-header-content">
+                    <h1>Machine Learning with Python</h1>
+                    <p>Master the essential machine learning techniques and build intelligent applications using Python and popular ML libraries.</p>
+                </div>
+            </div>
+            
+            <div class="course-body">
+                <div class="course-main">
+                    <div class="course-section">
+                        <h2>Course Description</h2>
+                        <p>This comprehensive Machine Learning course will take you from the basics to advanced techniques using Python. You'll learn how to build, evaluate, and deploy machine learning models for real-world applications.</p>
+                        <p>Through hands-on projects, you'll work with popular libraries like scikit-learn, TensorFlow, and Keras to solve problems in classification, regression, clustering, and more. By the end of the course, you'll have a portfolio of machine learning projects to showcase your skills.</p>
+                    </div>
+                    
+                    <div class="course-section">
+                        <h2>What You'll Learn</h2>
+                        <ul>
+                            <li>Fundamentals of machine learning and artificial intelligence</li>
+                            <li>Python programming for data science and ML</li>
+                            <li>Data preprocessing and feature engineering techniques</li>
+                            <li>Supervised learning algorithms (linear regression, decision trees, SVM, etc.)</li>
+                            <li>Unsupervised learning techniques (clustering, dimensionality reduction)</li>
+                            <li>Neural networks and deep learning fundamentals</li>
+                            <li>Model evaluation and hyperparameter tuning</li>
+                            <li>Deploying ML models in production</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-section">
+                        <h2>Course Curriculum</h2>
+                        
+                        <h3>Module 1: Introduction to Machine Learning</h3>
+                        <ul>
+                            <li>What is Machine Learning?</li>
+                            <li>Types of ML: Supervised, Unsupervised, Reinforcement</li>
+                            <li>Python for ML: NumPy, Pandas, Matplotlib</li>
+                        </ul>
+                        
+                        <h3>Module 2: Data Preprocessing</h3>
+                        <ul>
+                            <li>Handling missing data</li>
+                            <li>Feature scaling and normalization</li>
+                            <li>Categorical data encoding</li>
+                        </ul>
+                        
+                        <h3>Module 3: Supervised Learning</h3>
+                        <ul>
+                            <li>Linear and Logistic Regression</li>
+                            <li>Decision Trees and Random Forests</li>
+                            <li>Support Vector Machines</li>
+                        </ul>
+                        
+                        <h3>Module 4: Model Evaluation</h3>
+                        <ul>
+                            <li>Train-test split</li>
+                            <li>Cross-validation</li>
+                            <li>Performance metrics</li>
+                        </ul>
+                        
+                        <h3>Module 5: Unsupervised Learning</h3>
+                        <ul>
+                            <li>Clustering algorithms (K-Means, Hierarchical)</li>
+                            <li>Principal Component Analysis</li>
+                            <li>Anomaly detection</li>
+                        </ul>
+                        
+                        <h3>Module 6: Neural Networks</h3>
+                        <ul>
+                            <li>Introduction to TensorFlow and Keras</li>
+                            <li>Building and training neural networks</li>
+                            <li>Convolutional Neural Networks</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="course-sidebar">
+                    <div class="price-box">
+                        <h3>Enroll in Course</h3>
+                        <div class="price">$99 <span>$199</span></div>
+                        <p>50% discount ends in 3 days</p>
+                        <button class="btn-buy" id="buy-btn">Buy Now</button>
+                    </div>
+                    
+                    <div class="course-section">
+                        <h3>Course Features</h3>
+                        <ul class="course-features">
+                            <li>
+                                <span class="feature-label">Duration:</span>
+                                <span class="feature-value">36 Hours</span>
+                            </li>
+                            <li>
+                                <span class="feature-label">Modules:</span>
+                                <span class="feature-value">10</span>
+                            </li>
+                            <li>
+                                <span class="feature-label">Projects:</span>
+                                <span class="feature-value">5</span>
+                            </li>
+                            <li>
+                                <span class="feature-label">Skill Level:</span>
+                                <span class="feature-value">Intermediate</span>
+                            </li>
+                            <li>
+                                <span class="feature-label">Certificate:</span>
+                                <span class="feature-value">Yes</span>
+                            </li>
+                            <li>
+                                <span class="feature-label">Access:</span>
+                                <span class="feature-value">Lifetime</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="course-section">
+                        <h3>Instructor</h3>
+                        <div class="instructor">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor">
+                            <div class="instructor-info">
+                                <h4>Dr. Alex Johnson</h4>
+                                <p>Data Scientist & AI Researcher</p>
+                            </div>
+                        </div>
+                        <p>With over 10 years of experience in machine learning and AI, Dr. Johnson has worked with leading tech companies and published numerous research papers in top AI conferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show course details when Continue button is clicked
+        document.getElementById('continue-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('course-details').classList.add('active');
+            window.scrollTo(0, 0);
+        });
+        
+        // Hide course details when Back button is clicked
+        document.getElementById('back-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('course-details').classList.remove('active');
+        });
+        
+        // Handle Buy Now button click
+        document.getElementById('buy-btn').addEventListener('click', function() {
+            alert('Thank you for your purchase! You now have full access to the course.');
+            // In a real application, you would redirect to a payment page
+        });
+    </script>
+</body>
+</html>

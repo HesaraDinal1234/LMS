@@ -79,7 +79,7 @@
                             <span><i class="fas fa-clock"></i> 32 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             <span><i class="fas fa-clock"></i> 24 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                             <span><i class="fas fa-clock"></i> 18 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
                             <span><i class="fas fa-clock"></i> 28 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                             <span><i class="fas fa-clock"></i> 20 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                             <span><i class="fas fa-clock"></i> 26 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                             <span><i class="fas fa-clock"></i> 35 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -240,7 +240,7 @@
                             <span><i class="fas fa-clock"></i> 40 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -263,7 +263,7 @@
                             <span><i class="fas fa-clock"></i> 30 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Start</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
@@ -286,7 +286,7 @@
                             <span><i class="fas fa-clock"></i> 36 Hours</span>
                         </div>
                         <div class="course-actions">
-                            <a href="#" class="btn btn-enroll">Continue</a>
+                            <a href="coursedetails.php" class="btn btn-enroll">Start</a>
                             <a href="#" class="btn btn-view">Details</a>
                         </div>
                     </div>
