@@ -1,0 +1,129 @@
+CREATE DATABASE IF NOT EXISTS lms_system;
+USE lms_system;
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(20),
+    user_type ENUM('admin', 'instructor', 'student') NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT UNIQUE NOT NULL,
+    permissions JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE categories (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
+    category_name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+
+CREATE TABLE courses (
+    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(200) NOT NULL,
+    description TEXT,
+    instructor_id INT NOT NULL,
+    category_id INT,
+    price DECIMAL(10,2) DEFAULT 0.00,
+    thumbnail VARCHAR(255),
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (instructor_id) REFERENCES users(user_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);
+
+CREATE TABLE lessons (
+    lesson_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_id INT NOT NULL,
+    lesson_title VARCHAR(200) NOT NULL,
+    lesson_content TEXT,
+    lesson_order INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
+);
+
+CREATE TABLE videos (
+    video_id INT PRIMARY KEY AUTO_INCREMENT,
+    lesson_id INT NOT NULL,
+    video_title VARCHAR(200) NOT NULL,
+    video_path VARCHAR(500) NOT NULL,
+    duration_minutes INT,
+    file_size BIGINT,
+    uploaded_by INT NOT NULL,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(lesson_id) ON DELETE CASCADE,
+    FOREIGN KEY (uploaded_by) REFERENCES users(user_id)
+);
+
+CREATE TABLE materials (
+    material_id INT PRIMARY KEY AUTO_INCREMENT,
+    lesson_id INT NOT NULL,
+    material_title VARCHAR(200) NOT NULL,
+    file_path VARCHAR(500) NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    file_type VARCHAR(50) NOT NULL,
+    file_size BIGINT,
+    uploaded_by INT NOT NULL,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(lesson_id) ON DELETE CASCADE,
+    FOREIGN KEY (uploaded_by) REFERENCES users(user_id)
+);
+
+CREATE TABLE enrollments (
+    enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    course_id INT NOT NULL,
+    enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('active', 'completed', 'dropped') DEFAULT 'active',
+    progress DECIMAL(5,2) DEFAULT 0.00,
+    FOREIGN KEY (student_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_enrollment (student_id, course_id)
+);
+
+CREATE TABLE assignments (
+    assignment_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_id INT NOT NULL,
+    assignment_title VARCHAR(200) NOT NULL,
+    description TEXT,
+    due_date TIMESTAMP,
+    max_points INT DEFAULT 100,
+    created_by INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(user_id)
+);
+
+CREATE TABLE submissions (
+    submission_id INT PRIMARY KEY AUTO_INCREMENT,
+    assignment_id INT NOT NULL,
+    student_id INT NOT NULL,
+    submission_text TEXT,
+    file_path VARCHAR(500),
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    grade INT,
+    feedback TEXT,
+    FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE announcements (
+    announcement_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_id INT,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    created_by INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(user_id)
+);
